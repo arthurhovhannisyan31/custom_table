@@ -45,11 +45,17 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
     setDragged('')
     setOver(false)
   }, [handleSetColumnsOrder, dragged, column, setDragged])
+
+  const handleDragEnd = React.useCallback(() => {
+    setDragged('')
+  }, [setDragged])
+
   return (
     <>
       <div
         className={clsx(
           draggable && {
+            dragEnd: dragged !== column,
             dragStart: dragged === column,
             dragOver: over,
           }
@@ -59,6 +65,7 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
       >
         {children}
       </div>
