@@ -11,15 +11,13 @@ interface IProps {
   columnsOrder: string[]
 }
 
-const TableHead: React.FC<IProps> = ({ columns }) => {
+const TableHead: React.FC<IProps> = ({ columns, columnsOrder }) => {
   // todo memo
 
   const rowData = columns.map(({ title, name }) => ({
     name: title,
     value: name,
   }))
-  const columnsOrder = columns.map((el) => el.name)
-
   return (
     <thead>
       <TableRow

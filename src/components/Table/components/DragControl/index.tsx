@@ -19,42 +19,39 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
   // useState
   const [over, setOver] = React.useState(false)
 
-  const handleDragStart = (event: React.DragEvent) => {
+  const handleDragStart = React.useCallback(() => {
     setDragged(column)
-    // eslint-disable-next-line no-param-reassign
-    event.dataTransfer.effectAllowed = 'move'
-    event.dataTransfer.setData('text/html', column)
-  }
-  // todo change onMouseOver
-  const handleDragOver = (event: React.DragEvent) => {
-    event.stopPropagation()
-    event.preventDefault()
-    if (!over) setOver(true)
-    // console.log('DragOver', column)
-  }
-  const handleDragLeave = (event: React.DragEvent) => {
-    event.stopPropagation()
-    event.preventDefault()
-    if (over) setOver(false)
-    // console.log('Leave', column)
-  }
-  const handleDrop = () => {
+  }, [column, setDragged])
+  const handleDragOver = React.useCallback(
+    (event: React.DragEvent) => {
+      event.stopPropagation()
+      event.preventDefault()
+      if (!over) setOver(true)
+    },
+    [over]
+  )
+  const handleDragLeave = React.useCallback(
+    (event: React.DragEvent) => {
+      event.stopPropagation()
+      event.preventDefault()
+      if (over) setOver(false)
+    },
+    [over]
+  )
+  const handleDrop = React.useCallback(() => {
     if (dragged !== column) {
       handleSetColumnsOrder({ source: dragged, target: column })
     }
     setDragged('')
-  }
-  const handleDragEnd = () => {
     setOver(false)
-  }
-
+  }, [handleSetColumnsOrder, dragged, column, setDragged])
   return (
     <>
       <div
         className={clsx(
           draggable && {
             dragStart: dragged === column,
-            dragOver: dragged && over,
+            dragOver: over,
           }
         )}
         draggable={draggable}
@@ -62,7 +59,6 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
       >
         {children}
       </div>

@@ -41,15 +41,19 @@ const Table: React.FC = () => {
   )
   // todo opt to handler
   const handleSetColumnsOrder = (props: ISetColumnsOrderProps) => {
+    // console.log(props)
     const draggedIdx = columnsOrder.findIndex(
       (column) => column === props.source
     )
     const columnIdx = columnsOrder.findIndex(
       (column) => column === props.target
     )
+    // console.log(draggedIdx, columnIdx)
     const newColumnsOrder = [...columnsOrder]
     newColumnsOrder.splice(draggedIdx, 1)
     newColumnsOrder.splice(columnIdx, 0, props.source)
+    // console.log(columnsInitOrder)
+    // console.log(newColumnsOrder)
     setColumnsOrder(newColumnsOrder)
   }
 
