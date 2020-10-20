@@ -7,21 +7,68 @@ import TableBody from '_/components/Table/components/TableBody'
 import { columns, mock } from '_/components/Table/helpers'
 import '_/components/Table/style.scss'
 
+// todo move context to store
+
+interface ITableContext {
+  columnsOrder: string[]
+  handleSetColumnsOrder: (props: ISetColumnsOrderProps) => void
+  dragged: string
+  setDragged: React.Dispatch<React.SetStateAction<string>>
+}
+
+interface ISetColumnsOrderProps {
+  source: string
+  target: string
+}
+
+const tableContextInitValue = {
+  columnsOrder: [],
+  handleSetColumnsOrder: () => {},
+  dragged: '',
+  setDragged: () => {},
+}
+
+export const TableContext = React.createContext<ITableContext>(
+  tableContextInitValue
+)
+
 const Table: React.FC = () => {
-  console.log(columns)
-  console.log(mock)
+  const columnsInitOrder = columns.map((el) => el.name)
 
-  // todo table columns index change
-
-  const columnsOrder = columns.map((el) => el.name)
+  const [dragged, setDragged] = React.useState('')
+  const [columnsOrder, setColumnsOrder] = React.useState<string[]>(
+    columnsInitOrder
+  )
+  // todo opt to handler
+  const handleSetColumnsOrder = (props: ISetColumnsOrderProps) => {
+    const draggedIdx = columnsOrder.findIndex(
+      (column) => column === props.source
+    )
+    const columnIdx = columnsOrder.findIndex(
+      (column) => column === props.target
+    )
+    const newColumnsOrder = [...columnsOrder]
+    newColumnsOrder.splice(draggedIdx, 1)
+    newColumnsOrder.splice(columnIdx, 0, props.source)
+    setColumnsOrder(newColumnsOrder)
+  }
 
   return (
-    <div className="container">
-      <table>
-        <TableHead columns={columns} columnsOrder={columnsOrder} />
-        <TableBody rows={mock} columnsOrder={columnsOrder} />
-      </table>
-    </div>
+    <TableContext.Provider
+      value={{
+        columnsOrder,
+        handleSetColumnsOrder,
+        dragged,
+        setDragged,
+      }}
+    >
+      <div className="container">
+        <table className="table">
+          <TableHead columns={columns} columnsOrder={columnsOrder} />
+          <TableBody rows={mock} columnsOrder={columnsOrder} />
+        </table>
+      </div>
+    </TableContext.Provider>
   )
 }
 

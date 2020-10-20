@@ -1,0 +1,11 @@
+@import "src/styles/consts";
+
+.dragStart{
+  cursor: move;
+  opacity: 0.4;
+}
+
+.dragOver{
+  background-color: transparentize($color-primary, 0.5);
+}
+

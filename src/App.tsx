@@ -3,12 +3,16 @@ import React from 'react'
 // components
 import Layout from '_/components/Layout'
 import Table from '_/components/Table'
+// helpers
+import ContextCompose from '_/store/context/context-compose'
 
 const App: React.FC = () => {
   return (
-    <Layout>
-      <Table />
-    </Layout>
+    <ContextCompose>
+      <Layout>
+        <Table />
+      </Layout>
+    </ContextCompose>
   )
 }
 

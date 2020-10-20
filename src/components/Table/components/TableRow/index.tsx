@@ -1,22 +1,28 @@
 // deps
 import React from 'react'
 // helpers
-import { ICell } from '_/components/Table/types'
+import { ICell, ICellProps } from '_/components/Table/types'
 
 interface IProps {
-  // todo fix types
-  Component: React.FC
+  Component: React.FC<ICellProps>
   columns: string[]
   cells: ICell[]
 }
 
 const TableRow: React.FC<IProps> = ({ columns, Component, cells }) => {
   // todo memo
-  const orderedCells = columns.map((column) =>
-    cells.find((cell) => cell.name === column)
-  )
+  const orderedCells = columns.map((column) => ({
+    cell: cells.find((cell) => cell.name === column),
+    columnName: column,
+  }))
   const cellItems = orderedCells.map((el) => (
-    <Component key={el?.name}>{el?.value}</Component>
+    // todo fix types
+    <Component
+      key={el?.cell?.name}
+      value={el?.cell?.value}
+      name={el?.cell?.name}
+      column={el.columnName}
+    />
   ))
   return <tr>{cellItems}</tr>
 }

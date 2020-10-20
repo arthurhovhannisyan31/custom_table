@@ -4,7 +4,7 @@ import React from 'react'
 import TableRow from '_/components/Table/components/TableRow'
 import TableCell from '_/components/Table/components/TableCell'
 // helpers
-import { IRow, ICell } from '_/components/Table/types'
+import { IRow } from '_/components/Table/types'
 
 interface IProps {
   rows: IRow[]
@@ -18,10 +18,18 @@ const TableBody: React.FC<IProps> = ({ columnsOrder, rows }) => {
   const cellPropsSelector = (row: IRow) =>
     Object.entries(row).map(([name, value]) => ({ name, value }))
 
-  const formattedRows = rows.map(cellPropsSelector)
+  const formattedRows = rows.map((row) => ({
+    cells: cellPropsSelector(row),
+    id: row.revision,
+  }))
 
-  const rowItems = formattedRows.map((el: ICell[]) => (
-    <TableRow Component={TableCell} columns={columnsOrder} cells={el} />
+  const rowItems = formattedRows.map(({ cells, id }) => (
+    <TableRow
+      key={id}
+      Component={TableCell}
+      columns={columnsOrder}
+      cells={cells}
+    />
   ))
 
   return <tbody>{rowItems}</tbody>

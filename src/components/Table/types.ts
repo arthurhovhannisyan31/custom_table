@@ -22,3 +22,7 @@ export interface ICell {
   name: string
   value: string
 }
+
+export interface ICellProps extends Partial<ICell> {
+  column?: string
+}
