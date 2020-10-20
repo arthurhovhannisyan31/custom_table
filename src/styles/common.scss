@@ -1,0 +1,44 @@
+@import './consts';
+
+html {
+  height: 100%;
+}
+
+body {
+  background: $color-bg-main;
+  height: 100%;
+  margin: 0;
+  font-size: $font-size;
+  font-family: $font-main, $font-fallback;
+  overflow-x: hidden;
+   //macOS only
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: $font-main, $font-fallback;
+  cursor: pointer;
+}
+
+#root,
+.App {
+  display: flex;
+  height: 100%;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+a {
+  color: $color-black;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+

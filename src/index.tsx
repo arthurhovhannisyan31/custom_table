@@ -1,6 +1,10 @@
+// deps
 import React from 'react'
 import { render } from 'react-dom'
-import App from './App'
+// components
+import App from '_/App'
+// helpers
+import '_/styles/index.scss'
 
 const renderApp = () =>
   render(
