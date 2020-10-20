@@ -1,0 +1,8 @@
+@import "src/styles/consts";
+
+.container{
+  & th, td{
+    color: $color-typography-main;
+    font-size: $font-size;
+  }
+}

@@ -17,11 +17,7 @@ $width-mobile-479: 479px; // medium-mobile
 
 //// colors
 $color-primary: #2196f3;
-$color-primary-lighter: transparentize($color-primary, 0.25);
-$color-primary-lightest: transparentize($color-primary, 0.5);
 $color-secondary: #e3f2fd;
-$color-secondary-lighter: transparentize($color-secondary, 0.15);
-$color-secondary-lightest: transparentize($color-secondary, 0.2);
 $color-urgent: #ffb946;
 $color-positive: #2ed47a;
 $color-critical: #f7685b;
@@ -39,8 +35,11 @@ $color-white-high-emphasis: #ffffff;
 $color-white--medium-emphasis: rgba(255, 255, 255, 0.7);
 $color-gray-divider: #e5e5e5;
 
+// typography
+$color-typography-main: rgba(255,255,255,0.88);
+
 // background colors
-$color-bg-main: #fbfcfd;
+$color-bg-main: #282c35;
 $color-bg-light: #fafafa;
 
 // overlay color
