@@ -1,8 +1,8 @@
 // helpers
 import {
-  GET_SERVICES_ERROR,
-  GET_SERVICES_REQUEST,
-  GET_SERVICES_SUCCESS,
+  GET_REVISIONS_REQUEST,
+  GET_REVISIONS_ERROR,
+  GET_REVISIONS_SUCCESS,
 } from '_/store/revisions/constants'
 import { IRevision, IAction } from '_/store/revisions/types'
 
@@ -21,19 +21,19 @@ const initState: IInitState = {
 const revisionsReducer = (state: IInitState = initState, action: IAction) => {
   const { type, payload } = action
   switch (type) {
-    case GET_SERVICES_ERROR:
+    case GET_REVISIONS_ERROR:
       return {
         ...state,
         error: payload,
         loading: false,
       }
-    case GET_SERVICES_REQUEST:
+    case GET_REVISIONS_REQUEST:
       return {
         ...state,
         error: false,
         loading: payload,
       }
-    case GET_SERVICES_SUCCESS:
+    case GET_REVISIONS_SUCCESS:
       return {
         ...state,
       }

@@ -3,7 +3,8 @@
 .table{
   &-container{
     width: 80vw;
-    background-color: $color-bg-secondary
+    background-color: $color-bg-secondary;
+    position: relative;
   }
   &-content{
     border-collapse: collapse;

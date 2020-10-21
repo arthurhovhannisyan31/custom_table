@@ -1,14 +1,21 @@
 // deps
 import React from 'react'
-// import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+import {
+  useSelector,
+  // useDispatch, shallowEqual
+} from 'react-redux'
 // components
 import Table from '_/components/Table'
+import Loading from '_/components/Loading'
 // helpers
+import { revisionsSelector } from '_/pages/Main/helpers'
 import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
-import '_/pages/Main/style.scss'
 import { EFilterOrder } from '_/store/types'
+import '_/pages/Main/style.scss'
 
 const Main: React.FC = () => {
+  const { loading, data, error } = useSelector(revisionsSelector)
+  console.log(loading, data, error)
   // useMemo
   const columnsInitOrder = React.useMemo(() => columns.map((el) => el.name), [])
   // useState
@@ -42,6 +49,7 @@ const Main: React.FC = () => {
 
   return (
     <div className="main-container">
+      {loading && <Loading />}
       <Table
         columnsOrder={columnsOrder}
         onChangeColumnsOrder={handleChangeColumnsOrder}

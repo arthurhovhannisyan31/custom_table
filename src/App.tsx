@@ -8,6 +8,7 @@ import Main from '_/pages/Main'
 import store from '_/store'
 
 const App: React.FC = () => {
+  console.log(process.env)
   return (
     <Provider store={store}>
       <Layout>
