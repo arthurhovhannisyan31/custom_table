@@ -1,10 +1,10 @@
 // deps
 import React from 'react'
 // components
-import TableRow from 'Table/components/TableRow'
-import TableCell from 'Table/components/TableCell'
+import TableRow from '_/components/Table/components/TableRow'
+import TableCell from '_/components/Table/components/TableCell'
 // helpers
-import { TRow } from 'Table/types'
+import { TRow } from '_/components/Table/types'
 
 interface IProps {
   rows: Record<string, string | number>[]

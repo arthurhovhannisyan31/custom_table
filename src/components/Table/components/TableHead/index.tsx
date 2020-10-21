@@ -1,10 +1,10 @@
 // deps
 import React from 'react'
 // components
-import TableHeadCell from 'Table/components/TableHeadCell'
-import TableRow from 'Table/components/TableRow'
+import TableHeadCell from '_/components/Table/components/TableHeadCell'
+import TableRow from '_/components/Table/components/TableRow'
 // helpers
-import { IColumn } from 'Table/types'
+import { IColumn } from '_/components/Table/types'
 
 interface IProps {
   columns: IColumn[]

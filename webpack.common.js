@@ -49,7 +49,6 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       _: path.resolve(__dirname, 'src'),
-      Table: path.resolve(__dirname, 'src/components/Table'),
     },
   },
 }
