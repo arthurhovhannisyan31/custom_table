@@ -6,15 +6,16 @@ import TableBody from '_/components/Table/components/TableBody'
 import Pagination from '_/components/Table/components/Pagination'
 // helpers
 import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
+import { IFilter } from '_/components/Table/types'
 import '_/components/Table/style.scss'
-
-// todo move context to store
 
 interface ITableContext {
   columnsOrder: string[]
   handleSetColumnsOrder: (props: ISetColumnsOrderProps) => void
   dragged: string
   setDragged: React.Dispatch<React.SetStateAction<string>>
+  filter: IFilter
+  handleUpdateFilter: (props: Partial<IFilter>) => void
 }
 
 interface ISetColumnsOrderProps {
@@ -27,6 +28,12 @@ const tableContextInitValue = {
   handleSetColumnsOrder: () => {},
   dragged: '',
   setDragged: () => {},
+  filter: {
+    page: 0,
+    rowsPerPage: 0,
+    sort: [],
+  },
+  handleUpdateFilter: () => {},
 }
 
 export const TableContext = React.createContext<ITableContext>(
@@ -41,10 +48,13 @@ const Table: React.FC = () => {
   const [columnsOrder, setColumnsOrder] = React.useState<string[]>(
     columnsInitOrder
   )
-  const [page, setPage] = React.useState<number>(1)
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
-    rowsPerPageOptions[0]
-  )
+
+  const [filter, setFilter] = React.useState<IFilter>({
+    page: 1,
+    rowsPerPage: rowsPerPageOptions[0],
+    sort: [],
+  })
+
   const totalCount = 47
 
   // useCallback
@@ -63,18 +73,9 @@ const Table: React.FC = () => {
     },
     [columnsOrder]
   )
-  const handleChangePage = React.useCallback(
-    (val: number) => {
-      setPage(val)
-    },
-    [setPage]
-  )
-  const handleChangeRowsPerPage = React.useCallback(
-    (val: number) => {
-      setRowsPerPage(val)
-    },
-    [setRowsPerPage]
-  )
+
+  const handleUpdateFilter = (props: Partial<IFilter>) =>
+    setFilter((val) => ({ ...val, ...props }))
 
   return (
     <TableContext.Provider
@@ -83,6 +84,8 @@ const Table: React.FC = () => {
         handleSetColumnsOrder,
         dragged,
         setDragged,
+        filter,
+        handleUpdateFilter,
       }}
     >
       <div className="table-container">
@@ -93,10 +96,9 @@ const Table: React.FC = () => {
         <Pagination
           rowsPerPageOptions={rowsPerPageOptions}
           count={totalCount}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
+          rowsPerPage={filter.rowsPerPage}
+          page={filter.page}
+          handleUpdateFilter={handleUpdateFilter}
         />
       </div>
     </TableContext.Provider>

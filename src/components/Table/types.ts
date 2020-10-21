@@ -26,3 +26,9 @@ export interface ICell {
 export interface ICellProps extends Partial<ICell> {
   column?: string
 }
+
+export interface IFilter {
+  page: number
+  rowsPerPage: number
+  sort: { name: string; value: string }[]
+}

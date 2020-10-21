@@ -66,6 +66,7 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
   return (
     <div
       className={clsx(
+        'container',
         draggable && {
           dragEnd: dragged !== column,
           dragStart: dragged === column,

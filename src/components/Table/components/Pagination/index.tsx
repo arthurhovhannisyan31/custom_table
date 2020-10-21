@@ -7,6 +7,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import IconButton from '@material-ui/core/IconButton'
 // helpers
+import { IFilter } from '_/components/Table/types'
 import './style.scss'
 
 interface IProps {
@@ -14,8 +15,7 @@ interface IProps {
   count: number
   rowsPerPage: number
   page: number
-  onChangePage: (val: number) => void
-  onChangeRowsPerPage: (val: number) => void
+  handleUpdateFilter: (props: Partial<IFilter>) => void
   className?: string
 }
 
@@ -25,8 +25,7 @@ const Pagination: React.FC<IProps> = ({
   rowsPerPage,
   className,
   count,
-  onChangePage,
-  onChangeRowsPerPage,
+  handleUpdateFilter,
 }) => {
   const options = React.useMemo(
     () =>
@@ -38,17 +37,17 @@ const Pagination: React.FC<IProps> = ({
   )
   const handleChangeRowsPerPage = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      onChangeRowsPerPage(+event.target.value)
+      handleUpdateFilter({ rowsPerPage: +event.target.value, page: 1 })
     },
-    [onChangeRowsPerPage]
+    [handleUpdateFilter]
   )
 
   const handleChangePage = React.useCallback(
     (actionType: string) => () =>
-      actionType === 'increment'
-        ? onChangePage(page + 1)
-        : onChangePage(page - 1),
-    [onChangePage, page]
+      handleUpdateFilter({
+        page: actionType === 'increment' ? page + 1 : page - 1,
+      }),
+    [handleUpdateFilter, page]
   )
 
   const decrementDisabled = page === 1

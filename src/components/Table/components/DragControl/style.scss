@@ -1,11 +1,13 @@
 @import "src/styles/consts";
 
+.container{
+  display: flex;
+}
+
 .dragStart{
-  cursor: move;
   opacity: 0.4;
 }
 .dragEnd{
-  cursor: default;
   opacity: 1;
 }
 

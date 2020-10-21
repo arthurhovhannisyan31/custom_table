@@ -3,6 +3,29 @@
 th {
   text-align: left;
 }
-.cell {
-  padding: spacing(1);
+.tableHeadCell {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: spacing(2) spacing(1);
+
+  & .button{
+    cursor: pointer;
+    color: $color-typography-main;
+    font-weight: bold;
+    transition: all 1s ease-in-out;
+    &:hover .arrow{
+      opacity: 1;
+    }
+  }
+}
+
+.arrow{
+  transition: all 1s ease-in-out;
+  &-hide{
+    //opacity: 0;
+  }
+  &-revert{
+    transform:rotate(180deg);
+  }
 }

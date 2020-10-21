@@ -11,7 +11,7 @@ const TableCell: React.FC<ICellProps> = ({ value, name, column }) => {
   return (
     <td>
       <DragControl id={name || ''} column={column || ''}>
-        <div className="cell">{value}</div>
+        <div className="tableCell">{value}</div>
       </DragControl>
     </td>
   )

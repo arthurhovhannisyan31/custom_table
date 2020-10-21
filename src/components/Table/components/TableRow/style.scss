@@ -1,7 +1,14 @@
 @import "src/styles/consts";
+@import "src/styles/functions";
 
 .row{
   &-container{
     border-bottom: $border-main ;
+    & td:last-child, & th:last-child{
+      padding-right: spacing(1);
+    }
+    & td:first-child, & th:first-child{
+      padding-left: spacing(1);
+    }
   }
 }
