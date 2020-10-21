@@ -2,7 +2,7 @@
 import React from 'react'
 // components
 import Layout from '_/components/Layout'
-import Table from '_/components/Table'
+import Main from '_/pages/Main'
 // helpers
 import ContextCompose from '_/store/context/context-compose'
 
@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <ContextCompose>
       <Layout>
-        <Table />
+        <Main />
       </Layout>
     </ContextCompose>
   )

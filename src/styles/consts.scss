@@ -16,7 +16,7 @@ $width-mobile-639: 639px; // large-mobile
 $width-mobile-479: 479px; // medium-mobile
 
 // spacing
-$spacing: 8px;
+$spacing-base: 8px;
 
 //// colors
 $color-primary: #2196f3;
@@ -36,13 +36,14 @@ $color-gray-inactive: #d7d5d5;
 $color-white-disabled: rgba(255, 255, 255, 0.5);
 $color-white-high-emphasis: #ffffff;
 $color-white--medium-emphasis: rgba(255, 255, 255, 0.7);
-$color-gray-divider: #e5e5e5;
+$color-gray-divider: #cdcdcd;
 
 // typography
 $color-typography-main: rgba(255,255,255,0.88);
 
 // background colors
 $color-bg-main: #282c35;
+$color-bg-secondary: #52565D;
 $color-bg-light: #fafafa;
 
 // overlay color

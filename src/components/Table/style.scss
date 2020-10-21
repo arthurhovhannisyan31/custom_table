@@ -1,12 +1,15 @@
 @import "src/styles/consts";
 
-.container{
-  & th, td{
-    color: $color-typography-main;
-    font-size: $font-size;
-  }
-}
-
 .table{
-  border-collapse: collapse;
+  &-container{
+    width: 80vw;
+    background-color: $color-bg-secondary
+  }
+  &-content{
+    border-collapse: collapse;
+    th, td{
+      color: $color-typography-main;
+      font-size: $font-size;
+    }
+  }
 }

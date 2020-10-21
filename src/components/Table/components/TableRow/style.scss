@@ -1,0 +1,7 @@
+@import "src/styles/consts";
+
+.row{
+  &-container{
+    border-bottom: $border-main ;
+  }
+}

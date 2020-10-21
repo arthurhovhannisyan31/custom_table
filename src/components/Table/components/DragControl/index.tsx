@@ -21,6 +21,19 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
 
   const handleDragStart = React.useCallback(() => {
     setDragged(column)
+
+    // const canvas = document.createElement('canvas')
+    // canvas.width = 200
+    // canvas.height = 30
+    // const ctx = canvas.getContext('2d')
+    // ctx!.font = '16px Roboto'
+    // ctx!.fillText(column, 10, 20)
+    // const img = new Image(200, 40)
+    // img!.src = canvas.toDataURL()
+    // console.log(canvas.toDataURL())
+    // // eslint-disable-next-line no-param-reassign
+    // event.dataTransfer.effectAllowed = 'move'
+    // event.dataTransfer.setDragImage(img, 0, 0)
   }, [column, setDragged])
   const handleDragOver = React.useCallback(
     (event: React.DragEvent) => {
@@ -51,25 +64,23 @@ const DragControl: React.FC<IProps> = ({ children, column, draggable }) => {
   }, [setDragged])
 
   return (
-    <>
-      <div
-        className={clsx(
-          draggable && {
-            dragEnd: dragged !== column,
-            dragStart: dragged === column,
-            dragOver: over,
-          }
-        )}
-        draggable={draggable}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        {children}
-      </div>
-    </>
+    <div
+      className={clsx(
+        draggable && {
+          dragEnd: dragged !== column,
+          dragStart: dragged === column,
+          dragOver: over,
+        }
+      )}
+      draggable={draggable}
+      onDrop={handleDrop}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      {children}
+    </div>
   )
 }
 

@@ -2,6 +2,7 @@
 import React from 'react'
 // helpers
 import { ICell, ICellProps } from '_/components/Table/types'
+import './style.scss'
 
 interface IProps {
   Component: React.FC<ICellProps>
@@ -24,7 +25,7 @@ const TableRow: React.FC<IProps> = ({ columns, Component, cells }) => {
       column={el.columnName}
     />
   ))
-  return <tr>{cellItems}</tr>
+  return <tr className="row-container">{cellItems}</tr>
 }
 
 export default TableRow

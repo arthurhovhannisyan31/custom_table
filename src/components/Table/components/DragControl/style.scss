@@ -13,3 +13,10 @@
   background-color: transparentize($color-primary, 0.5);
 }
 
+.dragImage{
+  position: absolute;
+}
+
+canvas{
+  border: 1px solid red;
+}

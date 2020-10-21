@@ -1,8 +1,8 @@
-@import "src/styles/consts";
+@import "src/styles/functions";
 
 th {
   text-align: left;
 }
 .cell {
-  padding: $spacing;
+  padding: spacing(1);
 }

@@ -10,6 +10,8 @@ export const columns = [
   { name: 'changes_summary', title: 'changes_summary' },
 ]
 
+export const rowsPerPageOptions = [5, 10, 25, 50]
+
 export const rowsSelector = () => {}
 
 export const mock = [

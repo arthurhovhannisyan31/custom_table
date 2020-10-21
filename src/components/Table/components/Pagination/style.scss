@@ -1,0 +1,9 @@
+@import "src/styles/functions";
+
+.pagination{
+  &-container{
+    display: flex;
+    justify-content: flex-end;
+    height: spacing(5);
+  }
+}

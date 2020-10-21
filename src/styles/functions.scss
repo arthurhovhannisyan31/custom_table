@@ -1,0 +1,5 @@
+@import "src/styles/consts";
+
+@function spacing($val){
+  @return $spacing-base*$val
+}

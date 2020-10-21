@@ -4,7 +4,7 @@ import React from 'react'
 import './style.scss'
 
 const Layout: React.FC = ({ children }) => {
-  return <div className="container">{children}</div>
+  return <div className="layout-container">{children}</div>
 }
 
 export default Layout

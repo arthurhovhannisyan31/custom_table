@@ -3,8 +3,9 @@ import React from 'react'
 // components
 import TableHead from '_/components/Table/components/TableHead'
 import TableBody from '_/components/Table/components/TableBody'
+import Pagination from '_/components/Table/components/Pagination'
 // helpers
-import { columns, mock } from '_/components/Table/helpers'
+import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
 import '_/components/Table/style.scss'
 
 // todo move context to store
@@ -35,26 +36,38 @@ export const TableContext = React.createContext<ITableContext>(
 const Table: React.FC = () => {
   const columnsInitOrder = columns.map((el) => el.name)
 
-  const [dragged, setDragged] = React.useState('')
+  // useState
+  const [dragged, setDragged] = React.useState<string>('')
   const [columnsOrder, setColumnsOrder] = React.useState<string[]>(
     columnsInitOrder
   )
-  // todo opt to handler
-  const handleSetColumnsOrder = (props: ISetColumnsOrderProps) => {
-    // console.log(props)
-    const draggedIdx = columnsOrder.findIndex(
-      (column) => column === props.source
-    )
-    const columnIdx = columnsOrder.findIndex(
-      (column) => column === props.target
-    )
-    // console.log(draggedIdx, columnIdx)
-    const newColumnsOrder = [...columnsOrder]
-    newColumnsOrder.splice(draggedIdx, 1)
-    newColumnsOrder.splice(columnIdx, 0, props.source)
-    // console.log(columnsInitOrder)
-    // console.log(newColumnsOrder)
-    setColumnsOrder(newColumnsOrder)
+  const [page, setPage] = React.useState<number>(1)
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
+    rowsPerPageOptions[0]
+  )
+  const totalCount = 50
+
+  // useCallback
+  const handleSetColumnsOrder = React.useCallback(
+    (props: ISetColumnsOrderProps) => {
+      const draggedIdx = columnsOrder.findIndex(
+        (column) => column === props.source
+      )
+      const columnIdx = columnsOrder.findIndex(
+        (column) => column === props.target
+      )
+      const newColumnsOrder = [...columnsOrder]
+      newColumnsOrder.splice(draggedIdx, 1)
+      newColumnsOrder.splice(columnIdx, 0, props.source)
+      setColumnsOrder(newColumnsOrder)
+    },
+    [columnsOrder]
+  )
+  const handleChangePage = (val: number) => {
+    setPage(val)
+  }
+  const handleChangeRowsPerPage = (val: number) => {
+    setRowsPerPage(val)
   }
 
   return (
@@ -66,11 +79,19 @@ const Table: React.FC = () => {
         setDragged,
       }}
     >
-      <div className="container">
-        <table className="table">
+      <div className="table-container">
+        <table className="table-content">
           <TableHead columns={columns} columnsOrder={columnsOrder} />
           <TableBody rows={mock} columnsOrder={columnsOrder} />
         </table>
+        <Pagination
+          rowsPerPageOptions={rowsPerPageOptions}
+          count={totalCount}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </div>
     </TableContext.Provider>
   )
