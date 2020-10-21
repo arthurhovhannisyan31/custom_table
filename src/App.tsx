@@ -6,9 +6,11 @@ import Layout from '_/components/Layout'
 import Main from '_/pages/Main'
 // helpers
 import store from '_/store'
+import interceptor from '_/utils/interceptor.service'
+
+interceptor()
 
 const App: React.FC = () => {
-  console.log(process.env)
   return (
     <Provider store={store}>
       <Layout>

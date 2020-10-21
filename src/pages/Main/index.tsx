@@ -1,21 +1,21 @@
 // deps
 import React from 'react'
-import {
-  useSelector,
-  // useDispatch, shallowEqual
-} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 // components
 import Table from '_/components/Table'
 import Loading from '_/components/Loading'
 // helpers
 import { revisionsSelector } from '_/pages/Main/helpers'
 import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
+import { getRevisionsThunk } from '_/store/revisions/thunks'
 import { EFilterOrder } from '_/store/types'
 import '_/pages/Main/style.scss'
 
 const Main: React.FC = () => {
+  // react-redux
   const { loading, data, error } = useSelector(revisionsSelector)
   console.log(loading, data, error)
+  const dispatch = useDispatch()
   // useMemo
   const columnsInitOrder = React.useMemo(() => columns.map((el) => el.name), [])
   // useState
@@ -29,7 +29,6 @@ const Main: React.FC = () => {
   const [sort, setSort] = React.useState<Record<string, string | EFilterOrder>>(
     {}
   )
-
   // useCallback
   const handleChangeColumnsOrder = React.useCallback(
     (arr: string[]) => setColumnsOrder(arr),
@@ -46,6 +45,11 @@ const Main: React.FC = () => {
   )
 
   const totalCount = 47
+
+  React.useEffect(() => {
+    dispatch(getRevisionsThunk())
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <div className="main-container">

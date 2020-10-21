@@ -36,6 +36,7 @@ const revisionsReducer = (state: IInitState = initState, action: IAction) => {
     case GET_REVISIONS_SUCCESS:
       return {
         ...state,
+        data: payload,
       }
     default:
       return state
