@@ -7,15 +7,14 @@ import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
 import '_/pages/Main/style.scss'
 import { EFilterOrder } from '_/store/types'
 
-// todo pass props and request data here
-
 const Main: React.FC = () => {
-  const columnsInitOrder = columns.map((el) => el.name)
+  // useMemo
+  const columnsInitOrder = React.useMemo(() => columns.map((el) => el.name), [])
+  // useState
+  const [page, setPage] = React.useState<number>(1)
   const [columnsOrder, setColumnsOrder] = React.useState<string[]>(
     columnsInitOrder
   )
-
-  const [page, setPage] = React.useState<number>(1)
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(
     rowsPerPageOptions[0]
   )
@@ -23,13 +22,22 @@ const Main: React.FC = () => {
     {}
   )
 
-  const handleChangeColumnsOrder = (arr: string[]) => setColumnsOrder(arr)
-  const totalCount = 47
+  // useCallback
+  const handleChangeColumnsOrder = React.useCallback(
+    (arr: string[]) => setColumnsOrder(arr),
+    []
+  )
+  const handleSetPage = React.useCallback((val: number) => setPage(val), [])
+  const handleSetRowsPerPage = React.useCallback(
+    (val: number) => setRowsPerPage(val),
+    []
+  )
+  const handleSetSort = React.useCallback(
+    (val: Record<string, string | EFilterOrder>) => setSort(val),
+    []
+  )
 
-  const handleSetPage = (val: number) => setPage(val)
-  const handleSetRowsPerPage = (val: number) => setRowsPerPage(val)
-  const handleSetSort = (val: Record<string, string | EFilterOrder>) =>
-    setSort(val)
+  const totalCount = 47
 
   return (
     <div className="main-container">
