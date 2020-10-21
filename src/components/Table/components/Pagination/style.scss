@@ -1,9 +1,33 @@
 @import "src/styles/functions";
+@import "src/styles/consts";
 
 .pagination{
   &-container{
     display: flex;
     justify-content: flex-end;
-    height: spacing(5);
+    height: spacing(6);
+    align-items: center;
+    padding: 0 spacing(2);
+    color: $color-typography-main;
+
+    & .textField{
+      padding: 0 spacing(1);
+      & path{
+        fill: $color-typography-main;
+      }
+    }
+    & .textFieldInput{
+      color: $color-typography-main;
+    }
+    & .buttonDisabled{
+      & svg path{
+        fill: $color-black-disabled
+      }
+    }
+    & .icon{
+      & path{
+        fill: $color-typography-main;
+      }
+    }
   }
 }

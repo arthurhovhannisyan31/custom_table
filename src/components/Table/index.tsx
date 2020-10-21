@@ -45,7 +45,7 @@ const Table: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(
     rowsPerPageOptions[0]
   )
-  const totalCount = 50
+  const totalCount = 47
 
   // useCallback
   const handleSetColumnsOrder = React.useCallback(
@@ -63,12 +63,18 @@ const Table: React.FC = () => {
     },
     [columnsOrder]
   )
-  const handleChangePage = (val: number) => {
-    setPage(val)
-  }
-  const handleChangeRowsPerPage = (val: number) => {
-    setRowsPerPage(val)
-  }
+  const handleChangePage = React.useCallback(
+    (val: number) => {
+      setPage(val)
+    },
+    [setPage]
+  )
+  const handleChangeRowsPerPage = React.useCallback(
+    (val: number) => {
+      setRowsPerPage(val)
+    },
+    [setRowsPerPage]
+  )
 
   return (
     <TableContext.Provider
