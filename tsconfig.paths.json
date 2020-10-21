@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "Table/*": ["src/components/Table/*"],
       "_/*": [
         "src/*"
       ]

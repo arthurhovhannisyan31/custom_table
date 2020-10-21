@@ -1,5 +1,6 @@
 // deps
 import React from 'react'
+// import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 // components
 import Table from '_/components/Table'
 // helpers

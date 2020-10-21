@@ -2,7 +2,7 @@
 import React from 'react'
 import clsx from 'clsx'
 // helpers
-import { TableContext } from '_/components/Table'
+import { TableContext } from 'Table/'
 import './style.scss'
 
 interface IProps {

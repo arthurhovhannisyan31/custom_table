@@ -4,10 +4,10 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Button from '@material-ui/core/Button'
 import clsx from 'clsx'
 // components
-import { TableContext } from '_/components/Table'
+import { TableContext } from 'Table/'
 // helpers
-import { ICellProps, EFilterOrder } from '_/components/Table/types'
-import DragControl from '../DragControl'
+import { ICellProps, EFilterOrder } from 'Table/types'
+import DragControl from 'Table/components/DragControl'
 import './style.scss'
 
 const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {

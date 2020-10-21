@@ -1,13 +1,12 @@
 // deps
 import React from 'react'
 // components
-import TableHead from '_/components/Table/components/TableHead'
-import TableBody from '_/components/Table/components/TableBody'
-import Pagination from '_/components/Table/components/Pagination'
+import TableHead from 'Table/components/TableHead'
+import TableBody from 'Table/components/TableBody'
+import Pagination from 'Table/components/Pagination'
 // helpers
-import { IColumn, TRow } from '_/components/Table/types'
-import { EFilterOrder } from '_/store/types'
-import '_/components/Table/style.scss'
+import { IColumn, TRow, EFilterOrder } from 'Table/types'
+import 'Table/style.scss'
 
 interface ITableContext {
   columnsOrder: string[]
