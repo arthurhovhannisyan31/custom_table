@@ -1,4 +1,4 @@
-export interface IRow {
+export interface IRevision {
   revision: number
   revstmp: string
   user_id: number

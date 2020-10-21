@@ -1,5 +1,4 @@
-import { EFilterOrder } from '_/store/types'
-// todo move to store folders
+export type TRow = Record<string, string | number>
 
 export interface IColumn {
   name: string
@@ -13,4 +12,9 @@ export interface ICell {
 
 export interface ICellProps extends Partial<ICell> {
   column?: string
+}
+
+export enum EFilterOrder {
+  asc = 'asc',
+  desc = 'desc',
 }

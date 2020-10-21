@@ -5,10 +5,9 @@ import TableHead from '_/components/Table/components/TableHead'
 import TableBody from '_/components/Table/components/TableBody'
 import Pagination from '_/components/Table/components/Pagination'
 // helpers
-import { IColumn } from '_/components/Table/types'
-import '_/components/Table/style.scss'
-import { IRow } from '_/store/revisions/types'
+import { IColumn, TRow } from '_/components/Table/types'
 import { EFilterOrder } from '_/store/types'
+import '_/components/Table/style.scss'
 
 interface ITableContext {
   columnsOrder: string[]
@@ -48,7 +47,7 @@ export const TableContext = React.createContext<ITableContext>(
 interface IProps {
   columnsOrder: string[]
   onChangeColumnsOrder: (arr: string[]) => void
-  rows: IRow[]
+  rows: TRow[]
   columns: IColumn[]
   rowsPerPageOptions: number[]
   count: number

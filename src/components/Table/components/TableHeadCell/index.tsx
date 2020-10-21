@@ -4,14 +4,12 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Button from '@material-ui/core/Button'
 import clsx from 'clsx'
 // components
-import DragControl from '_/components/Table/components/DragControl'
 import { TableContext } from '_/components/Table'
 // helpers
-import { EFilterOrder } from '_/store/types'
-import { ICellProps } from '_/components/Table/types'
+import { ICellProps, EFilterOrder } from '_/components/Table/types'
+import DragControl from '../DragControl'
 import './style.scss'
 
-// todo fix types
 const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
   // useContext
   const { sort, handleSetSort } = React.useContext(TableContext)

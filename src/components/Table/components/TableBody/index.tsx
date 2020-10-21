@@ -4,17 +4,20 @@ import React from 'react'
 import TableRow from '_/components/Table/components/TableRow'
 import TableCell from '_/components/Table/components/TableCell'
 // helpers
-import { IRow } from '_/store/revisions/types'
+import { TRow } from '_/components/Table/types'
 
 interface IProps {
-  rows: IRow[]
+  rows: Record<string, string | number>[]
   columnsOrder: string[]
 }
 
 const TableBody: React.FC<IProps> = ({ columnsOrder, rows }) => {
   // todo move to helpers
-  const cellPropsSelector = (row: IRow) =>
-    Object.entries(row).map(([name, value]) => ({ name, value }))
+  const cellPropsSelector = (row: TRow) =>
+    Object.entries(row).map(([name, value]) => ({
+      name,
+      value: value as string,
+    }))
 
   const formattedRows = rows.map((row) => ({
     cells: cellPropsSelector(row),

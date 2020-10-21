@@ -4,12 +4,12 @@ import {
   GET_SERVICES_REQUEST,
   GET_SERVICES_SUCCESS,
 } from '_/store/revisions/constants'
-import { IRow, IAction } from '_/store/revisions/types'
+import { IRevision, IAction } from '_/store/revisions/types'
 
 interface IInitState {
   loading: false
   error: any
-  data: Record<string, IRow[]>
+  data: Record<string, IRevision[]>
 }
 
 const initState: IInitState = {
