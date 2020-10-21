@@ -54,7 +54,6 @@ const Table: React.FC = () => {
     rowsPerPage: rowsPerPageOptions[0],
     sort: [],
   })
-
   const totalCount = 47
 
   // useCallback

@@ -16,7 +16,6 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
   const { filter, handleUpdateFilter } = React.useContext(TableContext)
 
   const filterValueIdx = filter.sort.findIndex((el) => el.name === column)
-  // const [sorted, setSorted] = React.useState<boolean>(false)
   const sorted = filter.sort[filterValueIdx]?.value || 'desc'
 
   const handleChange = React.useCallback(() => {
@@ -24,10 +23,12 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
     if (filterValueIdx !== -1) {
       newSort[filterValueIdx] = {
         name: column as string,
-        value: sorted ? 'desc' : 'asc',
+        value: sorted === 'asc' ? 'desc' : 'asc',
       }
+    } else {
+      newSort.push({ name: column as string, value: 'asc' })
     }
-    newSort.push({ name: column as string, value: 'asc' })
+
     handleUpdateFilter({
       sort: newSort,
     })
