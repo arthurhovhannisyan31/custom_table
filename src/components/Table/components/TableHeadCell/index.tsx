@@ -7,32 +7,32 @@ import clsx from 'clsx'
 import DragControl from '_/components/Table/components/DragControl'
 import { TableContext } from '_/components/Table'
 // helpers
+import { EFilterOrder } from '_/store/types'
 import { ICellProps } from '_/components/Table/types'
 import './style.scss'
 
 // todo fix types
 const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
   // useContext
-  const { filter, handleUpdateFilter } = React.useContext(TableContext)
-
-  const filterValueIdx = filter.sort.findIndex((el) => el.name === column)
-  const sorted = filter.sort[filterValueIdx]?.value || 'desc'
+  const { sort, handleSetSort } = React.useContext(TableContext)
+  const order = sort?.name === column ? sort?.order : EFilterOrder.asc
 
   const handleChange = React.useCallback(() => {
-    const newSort = [...filter.sort]
-    if (filterValueIdx !== -1) {
-      newSort[filterValueIdx] = {
-        name: column as string,
-        value: sorted === 'asc' ? 'desc' : 'asc',
-      }
-    } else {
-      newSort.push({ name: column as string, value: 'asc' })
-    }
-
-    handleUpdateFilter({
-      sort: newSort,
-    })
-  }, [handleUpdateFilter, column, filter.sort, filterValueIdx, sorted])
+    const newSort =
+      sort.name === column
+        ? {
+            ...sort,
+            order:
+              order === EFilterOrder.desc
+                ? EFilterOrder.asc
+                : EFilterOrder.desc,
+          }
+        : {
+            name: column as string,
+            order,
+          }
+    handleSetSort(newSort as Record<string, string | EFilterOrder>)
+  }, [handleSetSort, column, sort, order])
 
   return (
     <th>
@@ -44,8 +44,8 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
           <ArrowDownwardIcon
             fontSize="small"
             className={clsx('arrow', {
-              'arrow-hide': sorted !== 'asc',
-              'arrow-revert': sorted === 'asc',
+              'arrow-hide': column !== sort?.name,
+              'arrow-revert': order === EFilterOrder.desc,
             })}
           />
         </Button>

@@ -4,7 +4,7 @@ import React from 'react'
 import TableRow from '_/components/Table/components/TableRow'
 import TableCell from '_/components/Table/components/TableCell'
 // helpers
-import { IRow } from '_/components/Table/types'
+import { IRow } from '_/store/revisions/types'
 
 interface IProps {
   rows: IRow[]
@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const TableBody: React.FC<IProps> = ({ columnsOrder, rows }) => {
-  // const rowItems = rows.map((el) => <TableRow />)
-
   // todo move to helpers
   const cellPropsSelector = (row: IRow) =>
     Object.entries(row).map(([name, value]) => ({ name, value }))
@@ -36,7 +34,3 @@ const TableBody: React.FC<IProps> = ({ columnsOrder, rows }) => {
 }
 
 export default TableBody
-
-//   Component: React.FC
-//   columns: string[]
-//   cells: { name: string; value: string }[]

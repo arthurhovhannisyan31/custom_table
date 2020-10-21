@@ -12,12 +12,14 @@ interface IProps {
 }
 
 const TableHead: React.FC<IProps> = ({ columns, columnsOrder }) => {
-  // todo memo
-
-  const rowData = columns.map(({ title, name }) => ({
-    name: title,
-    value: name,
-  }))
+  const rowData = React.useMemo(
+    () =>
+      columns.map(({ title, name }) => ({
+        name: title,
+        value: name,
+      })),
+    [columns]
+  )
   return (
     <thead>
       <TableRow

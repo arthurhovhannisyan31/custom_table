@@ -23,7 +23,7 @@ th {
 .arrow{
   transition: all 1s ease-in-out;
   &-hide{
-    //opacity: 0;
+    opacity: 0;
   }
   &-revert{
     transform:rotate(180deg);
