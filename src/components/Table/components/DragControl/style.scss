@@ -4,12 +4,6 @@
   &-container {
     display: flex;
   }
-  &-start{
-    opacity: 0.4;
-  }
-  &-end{
-    opacity: 1;
-  }
   &-over{
     background-color: transparentize($color-primary, 0.5);
   }

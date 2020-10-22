@@ -8,6 +8,7 @@ import { TableContext } from '_/components/Table'
 // helpers
 import { ICellProps, EFilterOrder } from '_/components/Table/types'
 import DragControl from '_/components/Table/components/DragControl'
+import Draggable from '_/components/Table/components/Draggable'
 import './style.scss'
 
 const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
@@ -32,22 +33,26 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
     handleSetSort(newSort as Record<string, string | EFilterOrder>)
   }, [handleSetSort, column, sort, order])
 
+  // todo fix default values
+
   return (
     <th>
-      <div className="tableHeadCell">
-        <Button size="small" className="button" onClick={handleChange}>
-          <DragControl id={name || ''} column={column || ''} draggable>
-            {value}
-          </DragControl>
-          <ArrowDownwardIcon
-            fontSize="small"
-            className={clsx('arrow', {
-              'arrow-hide': column !== sort?.name,
-              'arrow-revert': order === EFilterOrder.desc,
-            })}
-          />
-        </Button>
-      </div>
+      <DragControl id={name || ''} column={column || ''}>
+        <div className="tableHeadCell">
+          <Button size="small" className="button" onClick={handleChange}>
+            <Draggable id={name || ''} column={column || ''} draggable>
+              {value}
+            </Draggable>
+            <ArrowDownwardIcon
+              fontSize="small"
+              className={clsx('arrow', {
+                'arrow-hide': column !== sort?.name,
+                'arrow-revert': order === EFilterOrder.desc,
+              })}
+            />
+          </Button>
+        </div>
+      </DragControl>
     </th>
   )
 }
