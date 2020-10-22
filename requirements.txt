@@ -42,3 +42,4 @@ translateX(-200) -> translateX(0)
 Заменить IRow на Record<string, string>
 Перенести в хелперы селекторы
 Написать тесты на хед, боди, пагинацию
+Рапределять данные в кэш по page-perpage

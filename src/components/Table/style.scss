@@ -2,11 +2,12 @@
 
 .table{
   &-container{
-    width: 80vw;
+    width: 100%;
     background-color: $color-bg-secondary;
     position: relative;
   }
   &-content{
+    width: 100%;
     border-collapse: collapse;
     th, td{
       color: $color-typography-main;

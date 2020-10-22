@@ -8,16 +8,19 @@ import Loading from '_/components/Loading'
 import { revisionsSelector } from '_/pages/Main/helpers'
 import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
 import { getRevisionsThunk } from '_/store/revisions/thunks'
+import { ERevisionTypes } from '_/store/revisions/types'
 import { EFilterOrder } from '_/store/types'
 import '_/pages/Main/style.scss'
 
 const Main: React.FC = () => {
   // react-redux
-  const { loading, data, error } = useSelector(revisionsSelector)
-  console.log(loading, data, error)
+  const { loading, data, error, total } = useSelector(revisionsSelector)
+  console.log(loading, data, error, total)
+
   const dispatch = useDispatch()
   // useMemo
   const columnsInitOrder = React.useMemo(() => columns.map((el) => el.name), [])
+
   // useState
   const [page, setPage] = React.useState<number>(1)
   const [columnsOrder, setColumnsOrder] = React.useState<string[]>(
@@ -43,13 +46,34 @@ const Main: React.FC = () => {
     (val: Record<string, string | EFilterOrder>) => setSort(val),
     []
   )
+  // todo move total count to redux
+  const totalCount = 50
 
-  const totalCount = 47
+  const offset = Math.max(0, (page - 1) * rowsPerPage)
+  const limit = Math.min(page * rowsPerPage, totalCount)
+
+  // useMemo
+  const filter = React.useMemo(
+    () => ({
+      offset,
+      limit,
+      sort: {
+        ...sort,
+        // eslint-disable-next-line
+        // @ts-ignore
+        type: ERevisionTypes?.[sort?.name],
+      },
+    }),
+    [offset, limit, sort]
+  )
+
+  const rows = data?.[`${offset}-${limit}`] || []
 
   React.useEffect(() => {
-    dispatch(getRevisionsThunk())
-    // eslint-disable-next-line
-  }, [])
+    dispatch(getRevisionsThunk(filter))
+  }, [filter, dispatch])
+
+  console.log(loading)
 
   return (
     <div className="main-container">
@@ -57,7 +81,7 @@ const Main: React.FC = () => {
       <Table
         columnsOrder={columnsOrder}
         onChangeColumnsOrder={handleChangeColumnsOrder}
-        rows={mock}
+        rows={rows}
         columns={columns}
         rowsPerPageOptions={rowsPerPageOptions}
         count={totalCount}

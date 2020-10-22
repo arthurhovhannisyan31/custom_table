@@ -2,15 +2,16 @@
 import { getRevisions, setRevisions } from '_/store/revisions/actions'
 import { AppDispatch } from '_/store/store'
 import { fetchTestData } from '_/store/revisions/queries'
+import { IRevisionsFilterProps } from '_/store/revisions/types'
 
-export const getRevisionsThunk = () => {
+// eslint-disable-next-line
+export const getRevisionsThunk = (props: IRevisionsFilterProps) => {
+  const { limit, offset } = props
   return async (dispatch: AppDispatch) => {
     dispatch(getRevisions())
-    const data = await fetchTestData()
+    const { data, total } = await fetchTestData(props)
     setTimeout(() => {
-      dispatch(setRevisions(data))
-    }, 1000)
+      dispatch(setRevisions({ data, total, limit, offset }))
+    }, 1000 * Math.random())
   }
 }
-
-export const test = () => {}

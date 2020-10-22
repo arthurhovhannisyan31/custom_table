@@ -4,6 +4,7 @@ import React from 'react'
 import TableHead from '_/components/Table/components/TableHead'
 import TableBody from '_/components/Table/components/TableBody'
 import Pagination from '_/components/Table/components/Pagination'
+import NoData from '_/components/Table/components/NoData'
 // helpers
 import { IColumn, TRow, EFilterOrder } from '_/components/Table/types'
 import '_/components/Table/style.scss'
@@ -112,14 +113,18 @@ const Table: React.FC<IProps> = ({
           <TableHead columns={columns} columnsOrder={columnsOrder} />
           <TableBody rows={rows} columnsOrder={columnsOrder} />
         </table>
-        <Pagination
-          page={page}
-          onPageChange={onPageChange}
-          rowsPerPage={rowsPerPage}
-          onRowsPerPageChange={onRowsPerPageChange}
-          rowsPerPageOptions={rowsPerPageOptions}
-          count={count}
-        />
+        {rows.length ? (
+          <Pagination
+            page={page}
+            onPageChange={onPageChange}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={onRowsPerPageChange}
+            rowsPerPageOptions={rowsPerPageOptions}
+            count={count}
+          />
+        ) : (
+          <NoData />
+        )}
       </div>
     </TableContext.Provider>
   )

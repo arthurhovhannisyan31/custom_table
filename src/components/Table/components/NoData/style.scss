@@ -1,0 +1,12 @@
+@import "src/styles/consts";
+@import "src/styles/functions";
+
+.nodata{
+  &-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-typography-main;
+    height: spacing(10);
+  }
+}
