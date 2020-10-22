@@ -26,16 +26,9 @@ const DragControl: React.FC<IProps> = ({ children, column, head }) => {
     (event: React.DragEvent) => {
       event.stopPropagation()
       event.preventDefault()
-      if (head && over !== column) setOver(column)
+      if (dragged !== column) setOver(column)
     },
-    [head, over, column, setOver]
-  )
-  const handleDragLeave = React.useCallback(
-    (event: React.DragEvent) => {
-      event.stopPropagation()
-      event.preventDefault()
-    },
-    [over, dragged]
+    [dragged, column, setOver]
   )
   const handleDrop = React.useCallback(() => {
     if (dragged !== column) {
@@ -55,10 +48,10 @@ const DragControl: React.FC<IProps> = ({ children, column, head }) => {
     <div
       className={clsx('drag-control-container', {
         'dragControl-over': showOver,
+        'dragControl-drag': head && dragged === column,
       })}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
     >
       {children}
     </div>

@@ -7,7 +7,7 @@ export const columns = [
     name: 'revstmp',
     title: 'revstmp',
     format: (val: string) =>
-      format((new Date(val) as never) as Date, 'dd/MM/yyyy'),
+      format((new Date(val) as never) as Date, 'dd/MM/yyyy hh:mm:ss'),
   },
   { name: 'user_id', title: 'user_id' },
   { name: 'user_email', title: 'user_email' },

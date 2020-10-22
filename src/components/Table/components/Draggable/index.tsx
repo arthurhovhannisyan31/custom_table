@@ -13,7 +13,7 @@ interface IProps {
 
 const Draggable: React.FC<IProps> = ({ children, column, draggable }) => {
   // useContext
-  const { dragged, setDragged } = React.useContext(TableContext)
+  const { setDragged, setOver } = React.useContext(TableContext)
 
   const handleDragStart = React.useCallback(() => {
     setDragged(column)
@@ -21,17 +21,12 @@ const Draggable: React.FC<IProps> = ({ children, column, draggable }) => {
 
   const handleDragEnd = React.useCallback(() => {
     setDragged('')
-  }, [setDragged])
+    setOver('')
+  }, [setDragged, setOver])
 
   return (
     <div
-      className={clsx(
-        'draggable-container',
-        draggable && {
-          'dragControl-end': dragged !== column,
-          'dragControl-start': dragged === column,
-        }
-      )}
+      className={clsx('draggable-container')}
       draggable={draggable}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
