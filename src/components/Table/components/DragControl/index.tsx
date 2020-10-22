@@ -8,44 +8,46 @@ import './style.scss'
 interface IProps {
   id: string
   column: string
+  head?: boolean
   draggable?: boolean
 }
 
-const DragControl: React.FC<IProps> = ({ children, column }) => {
+const DragControl: React.FC<IProps> = ({ children, column, head }) => {
   // useContext
-  const { dragged, setDragged, handleSetColumnsOrder } = React.useContext(
-    TableContext
-  )
+  const {
+    dragged,
+    setDragged,
+    handleSetColumnsOrder,
+    over,
+    setOver,
+  } = React.useContext(TableContext)
   // useState
-  const [over, setOver] = React.useState(false)
-
   const handleDragOver = React.useCallback(
     (event: React.DragEvent) => {
       event.stopPropagation()
       event.preventDefault()
-      if (!over) setOver(true)
+      if (head && over !== column) setOver(column)
     },
-    [over]
+    [head, over, column, setOver]
   )
   const handleDragLeave = React.useCallback(
     (event: React.DragEvent) => {
       event.stopPropagation()
       event.preventDefault()
-      if (over) setOver(false)
     },
-    [over]
+    [over, dragged]
   )
   const handleDrop = React.useCallback(() => {
     if (dragged !== column) {
       handleSetColumnsOrder({ source: dragged, target: column })
     }
     setDragged('')
-    setOver(false)
-  }, [handleSetColumnsOrder, dragged, column, setDragged])
+    setOver('')
+  }, [handleSetColumnsOrder, dragged, column, setDragged, setOver])
 
-  const showOver = React.useMemo(() => over && dragged !== column, [
+  const showOver = React.useMemo(() => head && over === column, [
+    head,
     over,
-    dragged,
     column,
   ])
 

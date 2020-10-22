@@ -16,6 +16,8 @@ interface ITableContext {
   handleSetColumnsOrder: (props: ISetColumnsOrderProps) => void
   dragged: string
   setDragged: React.Dispatch<React.SetStateAction<string>>
+  over: string
+  setOver: React.Dispatch<React.SetStateAction<string>>
   page: number
   onPageChange: (val: number) => void
   rowsPerPage: number
@@ -32,6 +34,8 @@ const tableContextInitValue = {
   handleSetColumnsOrder: () => {},
   dragged: '',
   setDragged: () => {},
+  over: '',
+  setOver: () => {},
   sort: {},
   handleSetSort: () => {},
   page: 0,
@@ -75,6 +79,7 @@ const Table: React.FC<IProps> = ({
 }) => {
   // useState
   const [dragged, setDragged] = React.useState<string>('')
+  const [over, setOver] = React.useState<string>('')
 
   // useCallback
   const handleSetColumnsOrder = React.useCallback(
@@ -100,6 +105,8 @@ const Table: React.FC<IProps> = ({
         handleSetColumnsOrder,
         dragged,
         setDragged,
+        over,
+        setOver,
         sort,
         handleSetSort,
         page,

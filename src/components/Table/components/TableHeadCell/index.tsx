@@ -37,7 +37,7 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
 
   return (
     <th>
-      <DragControl id={name || ''} column={column || ''}>
+      <DragControl id={name || ''} column={column || ''} head>
         <div className="tableHeadCell">
           <Button size="small" className="button" onClick={handleChange}>
             <Draggable id={name || ''} column={column || ''} draggable>
