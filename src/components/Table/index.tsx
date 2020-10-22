@@ -112,7 +112,11 @@ const Table: React.FC<IProps> = ({
         <div className="table-content">
           <table>
             <TableHead columns={columns} columnsOrder={columnsOrder} />
-            <TableBody rows={rows} columnsOrder={columnsOrder} />
+            <TableBody
+              rows={rows}
+              columns={columns}
+              columnsOrder={columnsOrder}
+            />
           </table>
         </div>
         {rows.length ? (

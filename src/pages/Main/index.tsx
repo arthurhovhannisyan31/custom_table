@@ -9,7 +9,7 @@ import ErrorMessage from '_/components/ErrorMessage'
 import { revisionsSelector } from '_/pages/Main/helpers'
 import { columns, rowsPerPageOptions } from '_/components/Table/helpers'
 import { getRevisionsThunk } from '_/store/revisions/thunks'
-import { ERevisionTypes } from '_/store/revisions/types'
+import { ERevisionTypes, IRevisionsFilterProps } from '_/store/revisions/types'
 import { EFilterOrder } from '_/store/types'
 import '_/pages/Main/style.scss'
 
@@ -60,7 +60,7 @@ const Main: React.FC = () => {
   )
 
   // useMemo
-  const filter = React.useMemo(
+  const filter = React.useMemo<IRevisionsFilterProps>(
     () => ({
       offset,
       limit,
@@ -79,9 +79,10 @@ const Main: React.FC = () => {
     offset,
     limit,
   ])
+  console.log(rows)
 
   React.useEffect(() => {
-    if (!rows) dispatch(getRevisionsThunk(filter))
+    if (!rows || filter.sort?.name) dispatch(getRevisionsThunk(filter))
     // eslint-disable-next-line
   }, [filter])
 

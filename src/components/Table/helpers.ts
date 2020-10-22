@@ -1,6 +1,13 @@
+// deps
+import format from 'date-fns/format'
+
 export const columns = [
   { name: 'revision', title: 'revision' },
-  { name: 'revstmp', title: 'revstmp' },
+  {
+    name: 'revstmp',
+    title: 'revstmp',
+    format: (val: string) => format(new Date(val), 'dd/MM/yyyy'),
+  },
   { name: 'user_id', title: 'user_id' },
   { name: 'user_email', title: 'user_email' },
   { name: 'user_name', title: 'user_name' },

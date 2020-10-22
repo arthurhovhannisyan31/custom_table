@@ -4,34 +4,37 @@ import React from 'react'
 import TableRow from '_/components/Table/components/TableRow'
 import TableCell from '_/components/Table/components/TableCell'
 // helpers
-import { TRow } from '_/components/Table/types'
+import { IColumn } from '_/components/Table/types'
+import { cellPropsSelector } from '_/components/Table/components/TableBody/helpers'
 
 interface IProps {
   rows: Record<string, string | number>[]
+  columns: IColumn[]
   columnsOrder: string[]
 }
 
-const TableBody: React.FC<IProps> = ({ columnsOrder, rows }) => {
-  // todo move to helpers
-  const cellPropsSelector = (row: TRow) =>
-    Object.entries(row).map(([name, value]) => ({
-      name,
-      value: value as string,
-    }))
+const TableBody: React.FC<IProps> = ({ columnsOrder, rows, columns }) => {
+  const formattedRows = React.useMemo(
+    () =>
+      rows.map((row) => ({
+        cells: cellPropsSelector(row, columns),
+        id: row.revision,
+      })),
+    [rows, columns]
+  )
 
-  const formattedRows = rows.map((row) => ({
-    cells: cellPropsSelector(row),
-    id: row.revision,
-  }))
-
-  const rowItems = formattedRows.map(({ cells, id }) => (
-    <TableRow
-      key={id}
-      Component={TableCell}
-      columns={columnsOrder}
-      cells={cells}
-    />
-  ))
+  const rowItems = React.useMemo(
+    () =>
+      formattedRows.map(({ cells, id }) => (
+        <TableRow
+          key={id}
+          Component={TableCell}
+          columns={columnsOrder}
+          cells={cells}
+        />
+      )),
+    [formattedRows, columnsOrder]
+  )
 
   return <tbody>{rowItems}</tbody>
 }
