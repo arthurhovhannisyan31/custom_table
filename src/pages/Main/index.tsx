@@ -9,7 +9,11 @@ import ErrorMessage from '_/components/ErrorMessage'
 import { revisionsSelector } from '_/pages/Main/helpers'
 import { columns, rowsPerPageOptions } from '_/components/Table/helpers'
 import { getRevisionsThunk } from '_/store/revisions/thunks'
-import { ERevisionTypes, IRevisionsFilterProps } from '_/store/revisions/types'
+import {
+  TRevisionKeys,
+  IRevisionsFilterProps,
+  ERevisionTypes,
+} from '_/store/revisions/types'
 import { EFilterOrder } from '_/store/types'
 import '_/pages/Main/style.scss'
 
@@ -66,9 +70,7 @@ const Main: React.FC = () => {
       limit,
       sort: {
         ...sort,
-        // eslint-disable-next-line
-        // @ts-ignore
-        type: ERevisionTypes?.[sort?.name],
+        type: ERevisionTypes?.[sort.name as TRevisionKeys],
       },
     }),
     [offset, limit, sort]

@@ -2,7 +2,7 @@
 import format from 'date-fns/format'
 
 export const columns = [
-  { name: 'revision', title: 'revision' },
+  { name: 'revision', title: 'revision', format: (val: number) => val },
   {
     name: 'revstmp',
     title: 'revstmp',

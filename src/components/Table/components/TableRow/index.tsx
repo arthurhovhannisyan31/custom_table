@@ -11,20 +11,26 @@ interface IProps {
 }
 
 const TableRow: React.FC<IProps> = ({ columns, Component, cells }) => {
-  // todo memo
-  const orderedCells = columns.map((column) => ({
-    cell: cells.find((cell) => cell.name === column),
-    columnName: column,
-  }))
-  const cellItems = orderedCells.map((el) => (
-    // todo fix types
-    <Component
-      key={el?.cell?.name}
-      value={el?.cell?.value}
-      name={el?.cell?.name}
-      column={el.columnName}
-    />
-  ))
+  const orderedCells = React.useMemo(
+    () =>
+      columns.map((column) => ({
+        cell: cells.find((cell) => cell.name === column),
+        columnName: column,
+      })),
+    [columns, cells]
+  )
+  const cellItems = React.useMemo(
+    () =>
+      orderedCells.map((el) => (
+        <Component
+          key={el.cell?.name}
+          value={el.cell?.value}
+          name={el.cell?.name}
+          column={el.columnName}
+        />
+      )),
+    [orderedCells]
+  )
   return <tr className="row-container">{cellItems}</tr>
 }
 

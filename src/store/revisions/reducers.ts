@@ -4,12 +4,12 @@ import {
   GET_REVISIONS_ERROR,
   GET_REVISIONS_SUCCESS,
 } from '_/store/revisions/constants'
-import { IRevision, IAction } from '_/store/revisions/types'
+import { IAction, TRevision } from '_/store/revisions/types'
 
 interface IInitState {
   loading: false
   error: boolean | Record<string, Record<string, string>>
-  data: Record<string, IRevision[]>
+  data: Record<string, TRevision[]>
   total: number
 }
 
@@ -42,9 +42,9 @@ const revisionsReducer = (state: IInitState = initState, action: IAction) => {
         error: false,
         data: {
           ...state.data,
-          [`${payload.offset}-${payload.limit}`]: payload.data,
+          [`${payload?.offset}-${payload?.limit}`]: payload?.data,
         },
-        total: payload.total,
+        total: payload?.total,
       }
     default:
       return state

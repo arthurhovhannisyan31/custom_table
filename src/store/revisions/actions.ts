@@ -3,14 +3,13 @@ import {
   GET_REVISIONS_REQUEST,
   GET_REVISIONS_SUCCESS,
 } from '_/store/revisions/constants'
+import { TRevisionPayload } from '_/store/revisions/types'
 
-// eslint-disable-next-line
 export const getRevisions = () => ({
   type: GET_REVISIONS_REQUEST,
 })
 
-// todo fix types
-export const setRevisions = (payload: any) => ({
+export const setRevisions = (payload: TRevisionPayload) => ({
   type: GET_REVISIONS_SUCCESS,
   payload,
 })

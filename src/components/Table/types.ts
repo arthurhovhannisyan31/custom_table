@@ -1,4 +1,7 @@
-export type TRow = Record<string, string | number>
+// export type TRow = Record<string, string | number>
+export type TRow = Record<string, any>
+
+export type TFormatRow = <T>(val: T) => T
 
 export interface IColumn {
   name: string
@@ -9,7 +12,7 @@ export interface IColumn {
 
 export interface ICell {
   name: string
-  value: string
+  value: string | number
 }
 
 export interface ICellProps extends Partial<ICell> {
