@@ -4,18 +4,19 @@ import { useSelector, useDispatch } from 'react-redux'
 // components
 import Table from '_/components/Table'
 import Loading from '_/components/Loading'
+import ErrorMessage from '_/components/ErrorMessage'
 // helpers
 import { revisionsSelector } from '_/pages/Main/helpers'
-import { columns, mock, rowsPerPageOptions } from '_/components/Table/helpers'
+import { columns, rowsPerPageOptions } from '_/components/Table/helpers'
 import { getRevisionsThunk } from '_/store/revisions/thunks'
 import { ERevisionTypes } from '_/store/revisions/types'
 import { EFilterOrder } from '_/store/types'
 import '_/pages/Main/style.scss'
 
 const Main: React.FC = () => {
+  const rowsPerPageDefaultOption = rowsPerPageOptions[0]
   // react-redux
   const { loading, data, error, total } = useSelector(revisionsSelector)
-  console.log(loading, data, error, total)
 
   const dispatch = useDispatch()
   // useMemo
@@ -27,7 +28,7 @@ const Main: React.FC = () => {
     columnsInitOrder
   )
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(
-    rowsPerPageOptions[0]
+    rowsPerPageDefaultOption
   )
   const [sort, setSort] = React.useState<Record<string, string | EFilterOrder>>(
     {}
@@ -46,11 +47,17 @@ const Main: React.FC = () => {
     (val: Record<string, string | EFilterOrder>) => setSort(val),
     []
   )
-  // todo move total count to redux
-  const totalCount = 50
-
-  const offset = Math.max(0, (page - 1) * rowsPerPage)
-  const limit = Math.min(page * rowsPerPage, totalCount)
+  const offset = React.useMemo(() => Math.max(0, (page - 1) * rowsPerPage), [
+    page,
+    rowsPerPage,
+  ])
+  const limit = React.useMemo(
+    () =>
+      total > 0
+        ? Math.min(page * rowsPerPage, total)
+        : rowsPerPageDefaultOption,
+    [page, rowsPerPageDefaultOption, rowsPerPage, total]
+  )
 
   // useMemo
   const filter = React.useMemo(
@@ -67,24 +74,28 @@ const Main: React.FC = () => {
     [offset, limit, sort]
   )
 
-  const rows = data?.[`${offset}-${limit}`] || []
+  const rows = React.useMemo(() => data?.[`${offset}-${limit}`], [
+    data,
+    offset,
+    limit,
+  ])
 
   React.useEffect(() => {
-    dispatch(getRevisionsThunk(filter))
-  }, [filter, dispatch])
-
-  console.log(loading)
+    if (!rows) dispatch(getRevisionsThunk(filter))
+    // eslint-disable-next-line
+  }, [filter])
 
   return (
     <div className="main-container">
       {loading && <Loading />}
+      {error && <ErrorMessage />}
       <Table
         columnsOrder={columnsOrder}
         onChangeColumnsOrder={handleChangeColumnsOrder}
-        rows={rows}
+        rows={rows || []}
         columns={columns}
         rowsPerPageOptions={rowsPerPageOptions}
-        count={totalCount}
+        count={total}
         page={page}
         onPageChange={handleSetPage}
         rowsPerPage={rowsPerPage}

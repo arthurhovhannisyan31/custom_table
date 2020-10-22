@@ -1,0 +1,12 @@
+@import "src/styles/functions";
+@import "src/styles/consts";
+
+.error{
+  &-container{
+    color: $color-critical;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: spacing(2);
+  }
+}

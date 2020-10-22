@@ -12,6 +12,6 @@ export const getRevisionsThunk = (props: IRevisionsFilterProps) => {
     const { data, total } = await fetchTestData(props)
     setTimeout(() => {
       dispatch(setRevisions({ data, total, limit, offset }))
-    }, 1000 * Math.random())
+    }, 2000 * Math.random())
   }
 }

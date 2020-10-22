@@ -6,13 +6,7 @@ import App from '_/App'
 // helpers
 import '_/styles/index.scss'
 
-const renderApp = () =>
-  render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-    document.getElementById('root')
-  )
+const renderApp = () => render(<App />, document.getElementById('root'))
 
 renderApp()
 // eslint-disable-next-line
