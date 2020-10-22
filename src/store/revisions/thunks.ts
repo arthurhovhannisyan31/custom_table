@@ -6,7 +6,6 @@ import { IRevisionsFilterProps } from '_/store/revisions/types'
 
 // eslint-disable-next-line
 export const getRevisionsThunk = (props: IRevisionsFilterProps) => {
-  console.log(props)
   const { limit, offset } = props
   return async (dispatch: AppDispatch) => {
     dispatch(getRevisions())

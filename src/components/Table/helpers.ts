@@ -6,7 +6,8 @@ export const columns = [
   {
     name: 'revstmp',
     title: 'revstmp',
-    format: (val: string) => format(new Date(val), 'dd/MM/yyyy'),
+    format: (val: string) =>
+      format((new Date(val) as never) as Date, 'dd/MM/yyyy'),
   },
   { name: 'user_id', title: 'user_id' },
   { name: 'user_email', title: 'user_email' },

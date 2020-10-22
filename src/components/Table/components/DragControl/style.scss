@@ -1,22 +1,18 @@
 @import "src/styles/consts";
 
-.container{
-  display: flex;
-}
-
-.dragStart{
-  opacity: 0.4;
-}
-.dragEnd{
-  opacity: 1;
-}
-
-.dragOver{
-  background-color: transparentize($color-primary, 0.5);
-}
-
-.dragImage{
-  position: absolute;
+.dragControl {
+  &-container {
+    display: flex;
+  }
+  &-start{
+    opacity: 0.4;
+  }
+  &-end{
+    opacity: 1;
+  }
+  &-over{
+    background-color: transparentize($color-primary, 0.5);
+  }
 }
 
 canvas{

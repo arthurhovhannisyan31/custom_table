@@ -79,7 +79,6 @@ const Main: React.FC = () => {
     offset,
     limit,
   ])
-  console.log(rows)
 
   React.useEffect(() => {
     if (!rows || filter.sort?.name) dispatch(getRevisionsThunk(filter))

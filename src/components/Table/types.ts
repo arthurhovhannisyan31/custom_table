@@ -3,7 +3,8 @@ export type TRow = Record<string, string | number>
 export interface IColumn {
   name: string
   title: string
-  format?: <T>(val: T) => T
+  // todo fix types
+  format?: (val: any) => any
 }
 
 export interface ICell {
