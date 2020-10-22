@@ -109,10 +109,12 @@ const Table: React.FC<IProps> = ({
       }}
     >
       <div className="table-container">
-        <table className="table-content">
-          <TableHead columns={columns} columnsOrder={columnsOrder} />
-          <TableBody rows={rows} columnsOrder={columnsOrder} />
-        </table>
+        <div className="table-content">
+          <table>
+            <TableHead columns={columns} columnsOrder={columnsOrder} />
+            <TableBody rows={rows} columnsOrder={columnsOrder} />
+          </table>
+        </div>
         {rows.length ? (
           <Pagination
             page={page}

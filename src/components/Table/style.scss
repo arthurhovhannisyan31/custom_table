@@ -2,16 +2,24 @@
 
 .table{
   &-container{
-    width: 100%;
     background-color: $color-bg-secondary;
     position: relative;
   }
   &-content{
     width: 100%;
-    border-collapse: collapse;
+    overflow-x: auto;
+    table{
+      width: 100%;
+      border-collapse: collapse;
+    }
     th, td{
       color: $color-typography-main;
-      font-size: $font-size;
+    }
+    th {
+      font-size: $font-size-regular;
+    }
+    td {
+      font-size: $font-size-small;
     }
   }
 }

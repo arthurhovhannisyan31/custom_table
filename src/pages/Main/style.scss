@@ -1,10 +1,11 @@
+@import "src/styles/functions";
+
 .main{
   &-container{
-    display: flex;
     width: 80vw;
-    justify-content: center;
-    align-items: center;
+    display: flex;
     flex-flow: column;
     position: relative;
+    padding-top:  spacing(10);
   }
 }

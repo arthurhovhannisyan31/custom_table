@@ -3,6 +3,7 @@
 
 .pagination{
   &-container{
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     height: spacing(6);
