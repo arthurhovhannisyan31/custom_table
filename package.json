@@ -8,17 +8,23 @@
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "serve": "serve dist -p 3000",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "ajv": "^6.12.5",
     "axios": "^0.20.0",
+    "babel-jest": "^26.3.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "jest": "^26.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -36,6 +42,9 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.12.1",
     "@types/axios": "^0.14.0",
+    "@types/enzyme": "^3.10.7",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jest": "^26.0.15",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
@@ -57,14 +66,19 @@
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
+    "jest-enzyme": "^7.1.2",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "sass-loader": "^10.0.3",
     "style-loader": "^2.0.0",
+    "ts-jest": "^26.4.1",
     "typescript": "^4.0.3",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.2.0"
+  },
+  "_moduleAliases": {
+    "_": "src"
   }
 }

@@ -15,7 +15,7 @@ import {
   ERevisionTypes,
 } from '_/store/revisions/types'
 import { EFilterOrder } from '_/store/types'
-import '_/pages/Main/style.scss'
+import './style.scss'
 
 const Main: React.FC = () => {
   const rowsPerPageDefaultOption = rowsPerPageOptions[0]

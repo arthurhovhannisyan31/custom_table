@@ -7,7 +7,7 @@ import Pagination from '_/components/Table/components/Pagination'
 import NoData from '_/components/Table/components/NoData'
 // helpers
 import { IColumn, TRow, EFilterOrder } from '_/components/Table/types'
-import '_/components/Table/style.scss'
+import './style.scss'
 
 interface ITableContext {
   columnsOrder: string[]
