@@ -94,7 +94,8 @@ const Main: React.FC = () => {
       <Table
         columnsOrder={columnsOrder}
         onChangeColumnsOrder={handleChangeColumnsOrder}
-        rows={rows || []}
+        // rows={rows || []}
+        rows={[]}
         columns={columns}
         rowsPerPageOptions={rowsPerPageOptions}
         count={total}

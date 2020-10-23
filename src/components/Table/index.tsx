@@ -118,23 +118,12 @@ const Table: React.FC<IProps> = ({
       <div className="table-container">
         <div className="table-content">
           <table>
-            <TableHead columns={columns} columnsOrder={columnsOrder} />
-            <TableBody
-              rows={rows}
-              columns={columns}
-              columnsOrder={columnsOrder}
-            />
+            <TableHead columns={columns} />
+            <TableBody rows={rows} columns={columns} />
           </table>
         </div>
         {rows.length ? (
-          <Pagination
-            page={page}
-            onPageChange={onPageChange}
-            rowsPerPage={rowsPerPage}
-            onRowsPerPageChange={onRowsPerPageChange}
-            rowsPerPageOptions={rowsPerPageOptions}
-            count={count}
-          />
+          <Pagination rowsPerPageOptions={rowsPerPageOptions} count={count} />
         ) : (
           <NoData />
         )}

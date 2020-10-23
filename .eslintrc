@@ -39,7 +39,8 @@
     "react/jsx-one-expression-per-line": 0,
     "react/jsx-props-no-spreading": 0,
     "import/named": 0,
-    "@typescript-eslint/explicit-module-boundary-types": 0
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "no-unused-vars": "warn"
   },
   "globals": {
     "window": true,

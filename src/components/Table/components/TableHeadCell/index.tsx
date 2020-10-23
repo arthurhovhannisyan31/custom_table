@@ -4,8 +4,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import Button from '@material-ui/core/Button'
 import clsx from 'clsx'
 // components
-import { TableContext } from '_/components/Table'
 // helpers
+import { TableContext } from '_/components/Table'
 import { ICellProps, EFilterOrder } from '_/components/Table/types'
 import DragControl from '_/components/Table/components/DragControl'
 import Draggable from '_/components/Table/components/Draggable'
@@ -32,8 +32,6 @@ const TableHeadCell: React.FC<ICellProps> = ({ value, name, column }) => {
           }
     handleSetSort(newSort as Record<string, string | EFilterOrder>)
   }, [handleSetSort, column, sort, order])
-
-  // todo fix default values
 
   return (
     <th>

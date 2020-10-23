@@ -1,5 +1,4 @@
-// export type TRow = Record<string, string | number>
-export type TRow = Record<string, any>
+export type TRow = Record<string, string | number>
 
 export type TFormatRow = <T>(val: T) => T
 

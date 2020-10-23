@@ -7,27 +7,28 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import IconButton from '@material-ui/core/IconButton'
 // helpers
+import { TableContext } from '_/components/Table'
 import './style.scss'
 
 interface IProps {
   rowsPerPageOptions: number[]
   count: number
-  rowsPerPage: number
-  page: number
-  onPageChange: (val: number) => void
-  onRowsPerPageChange: (val: number) => void
   className?: string
 }
 
 const Pagination: React.FC<IProps> = ({
   rowsPerPageOptions,
-  page,
-  rowsPerPage,
   className,
   count,
-  onRowsPerPageChange,
-  onPageChange,
 }) => {
+  // useContext
+  const {
+    page,
+    onPageChange,
+    rowsPerPage,
+    onRowsPerPageChange,
+  } = React.useContext(TableContext)
+
   const options = React.useMemo(
     () =>
       rowsPerPageOptions.map((el) => ({
