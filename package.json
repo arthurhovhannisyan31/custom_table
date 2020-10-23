@@ -7,11 +7,14 @@
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "serve": "serve dist -p 3000",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "test": "jest --watch",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "ajv": "^6.12.5",
     "axios": "^0.20.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
@@ -42,7 +45,6 @@
     "@types/react-redux": "^7.1.9",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
-    "ajv": "^6.12.5",
     "babel-cli": "^6.26.0",
     "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
