@@ -92,10 +92,10 @@ const Main: React.FC = () => {
       {loading && <Loading />}
       {error && <ErrorMessage />}
       <Table
+        loading={loading}
         columnsOrder={columnsOrder}
         onChangeColumnsOrder={handleChangeColumnsOrder}
-        // rows={rows || []}
-        rows={[]}
+        rows={rows || []}
         columns={columns}
         rowsPerPageOptions={rowsPerPageOptions}
         count={total}

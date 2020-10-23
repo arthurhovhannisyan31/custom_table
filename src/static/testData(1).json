@@ -516,11 +516,44 @@
       "well_name": "36",
       "well_type": "typewells",
       "changes_summary": "UPDATE logs \"Copy of GR\""
+    },
+    {
+      "revision": 599868,
+      "revstmp": "2020-08-12T13:08:47.373+0000",
+      "user_id": 136,
+      "user_email": "am+pi@rogii.com",
+      "user_name": "A M",
+      "well_id": "43955740-75c1-43ff-bcf2-c580c4063dc5",
+      "well_name": "36",
+      "well_type": "typewells",
+      "changes_summary": "UPDATE logs \"Copy of GR\""
+    },
+    {
+      "revision": 599867,
+      "revstmp": "2020-08-12T13:07:43.127+0000",
+      "user_id": 136,
+      "user_email": "am+pi@rogii.com",
+      "user_name": "A M",
+      "well_id": "43955740-75c1-43ff-bcf2-c580c4063dc5",
+      "well_name": "36",
+      "well_type": "typewells",
+      "changes_summary": "UPDATE logs \"Copy of GR\""
+    },
+    {
+      "revision": 599866,
+      "revstmp": "2020-08-12T13:06:54.602+0000",
+      "user_id": 136,
+      "user_email": "am+pi@rogii.com",
+      "user_name": "A M",
+      "well_id": "43955740-75c1-43ff-bcf2-c580c4063dc5",
+      "well_name": "36",
+      "well_type": "typewells",
+      "changes_summary": "UPDATE logs \"Copy of GR\""
     }
   ],
   "offset": 0,
   "limit": 50,
   "first": true,
   "last": false,
-  "total": 47
+  "total": 50
 }

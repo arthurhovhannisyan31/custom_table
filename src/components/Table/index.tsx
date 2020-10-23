@@ -49,6 +49,7 @@ export const TableContext = React.createContext<ITableContext>(
 )
 
 interface IProps {
+  loading: boolean
   columnsOrder: string[]
   onChangeColumnsOrder: (arr: string[]) => void
   rows: TRow[]
@@ -64,6 +65,7 @@ interface IProps {
 }
 
 const Table: React.FC<IProps> = ({
+  loading,
   columnsOrder,
   onChangeColumnsOrder,
   rowsPerPageOptions,
@@ -119,13 +121,13 @@ const Table: React.FC<IProps> = ({
         <div className="table-content">
           <table>
             <TableHead columns={columns} />
-            <TableBody rows={rows} columns={columns} />
+            <TableBody rows={rows} columns={columns} count={count} />
           </table>
         </div>
         {rows.length ? (
           <Pagination rowsPerPageOptions={rowsPerPageOptions} count={count} />
         ) : (
-          <NoData />
+          !loading && <NoData />
         )}
       </div>
     </TableContext.Provider>

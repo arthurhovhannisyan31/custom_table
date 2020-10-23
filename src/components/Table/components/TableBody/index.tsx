@@ -12,11 +12,12 @@ import { TableContext } from '_/components/Table'
 interface IProps {
   rows: Record<string, string | number>[]
   columns: IColumn[]
+  count: number
 }
 
-const TableBody: React.FC<IProps> = ({ rows, columns }) => {
+const TableBody: React.FC<IProps> = ({ rows, columns, count }) => {
   // useContext
-  const { columnsOrder } = React.useContext(TableContext)
+  const { columnsOrder, rowsPerPage, page } = React.useContext(TableContext)
   // useMemo
   const formattedRows = React.useMemo(
     () =>
@@ -39,22 +40,18 @@ const TableBody: React.FC<IProps> = ({ rows, columns }) => {
     [formattedRows, columnsOrder]
   )
 
-  // const emptyRows = React.useMemo(
-  //   () =>
-  //     rows?.length
-  //       ? rowsPerPage -
-  //       Math.min(rowsPerPage, totalCount - (page - 1) * rowsPerPage)
-  //       : rowsPerPage,
-  //   [rows, rowsPerPage, totalCount, page]
-  // )
+  const emptyRows = React.useMemo(
+    () =>
+      rows?.length
+        ? rowsPerPage - Math.min(rowsPerPage, count - (page - 1) * rowsPerPage)
+        : rowsPerPage,
+    [rows, rowsPerPage, count, page]
+  )
 
   return (
     <tbody>
       {rowItems}
-      <EmptyRow />
-      <EmptyRow />
-      <EmptyRow />
-      <EmptyRow />
+      {!!emptyRows && <EmptyRow count={emptyRows} />}
     </tbody>
   )
 }
