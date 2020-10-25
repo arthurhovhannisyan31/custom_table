@@ -9,7 +9,7 @@ module.exports = {
     },
   },
   moduleFileExtensions: ['ts', 'tsx', 'js'],
-  setupFiles: ['<rootDir>/jest.setup.js', '<rootDir>/src/tests/polyfill'],
+  setupFiles: ['<rootDir>/jest.setup.js', '<rootDir>/src/tests/polyfill.ts'],
   moduleNameMapper: {
     '_/(.*)': '<rootDir>/src/$1',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
@@ -17,5 +17,4 @@ module.exports = {
     '\\.(css|less|scss)$': 'identity-obj-proxy',
   },
   testEnvironment: 'node',
-  testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
 }
