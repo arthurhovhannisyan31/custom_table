@@ -13,7 +13,7 @@ interface IInitState {
   total: number
 }
 
-const initState: IInitState = {
+export const initState: IInitState = {
   loading: false,
   error: false,
   data: {},
